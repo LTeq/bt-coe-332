@@ -75,8 +75,4 @@ animals.append(leglist)
 
 # Writes to the json file.
 with open("animals.json", "w") as write_file:
-        json.dump(animals[0], write_file)
-	json.dump(animals[1], write_file)
-	json.dump(animals[2], write_file)
-	json.dump(animals[3], write_file)
-	json.dump(animals[4], write_file)
+        json.dump(animals, write_file, indent = 4)
