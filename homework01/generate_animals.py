@@ -60,18 +60,19 @@ for x in range(0,20):
         taillist.append(armlist[x] + leglist[x])
 
 # Creates a list with each location signifying each body part.
-animals = []
+animals = {}
 
 # 0 = head
 # 1 = body
 # 2 = tail
 # 3 = arm
 # 4 = leg
-animals.append(headlist)
-animals.append(bodylist)
-animals.append(taillist)
-animals.append(armlist)
-animals.append(leglist)
+
+animals['head'] = headlist
+animals['body'] = bodylist
+animals['tail'] = taillist
+animals['arms'] = armlist
+animals['legs'] = leglist
 
 # Writes to the json file.
 with open("animals.json", "w") as write_file:
