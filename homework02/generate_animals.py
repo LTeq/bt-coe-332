@@ -21,25 +21,25 @@ bodylist = []
 for x in range(0,20):
         i = random.sample((1,5), 2)
         if (i[0] == 1):
-		bodylist.append('snake')
-	if (i[0] == 2):
-	bodylist.append('bull')
-	if (i[0] == 3):
-		bodylist.append('lion')
-	if (i[0] == 4):
-		bodylist.append('raven')
-	if (i[0] == 5):
-		bodylist.append('bunny')
-	if (i[1] == 1):
-		bodylist[x] += '-snake'
-	if (i[1] == 2):
-		bodylist[x] += '-bull'
+                bodylist.append('snake')
+        if (i[0] == 2):
+        	bodylist.append('bull')
+        if (i[0] == 3):
+                bodylist.append('lion')
+        if (i[0] == 4):
+                bodylist.append('raven')
+        if (i[0] == 5):
+                bodylist.append('bunny')
+        if (i[1] == 1):
+                bodylist[x] += '-snake'
+        if (i[1] == 2):
+                bodylist[x] += '-bull'
         if (i[1] == 3):
-		bodylist[x] += '-lion'
-	if (i[1] == 4):
-		bodylist[x] += '-raven'
-	if (i[1] == 5):
-		bodylist[x] += '-bunny'
+                bodylist[x] += '-lion'
+        if (i[1] == 4):
+                bodylist[x] += '-raven'
+        if (i[1] == 5):
+                bodylist[x] += '-bunny'
 
 # creates an empty list to add tails into.
 taillist = []
@@ -74,4 +74,4 @@ animals['legs'] = leglist
 
 # Writes to the json file.
 with open("animals.json", "w") as write_file:
-        json.dump(animals, write_file, indent = 4)
+        json.dump(animals, write_file, indent = 5)
