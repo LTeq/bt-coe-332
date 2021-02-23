@@ -2,6 +2,23 @@ import json
 import random
 import string
 
+# Unit tests for animal body parts.
+def check_animal_head(head):
+	assert isinstance(head, str), 'The head should be a string'
+
+def check_animal_body(body):
+	assert isinstance(body, str), 'The body should be a string'
+
+def check_animal_arms(arms):
+	assert isinstance(arms, int), 'The arms should be an int'
+
+def check_animal_legs(legs):
+	assert isinstance(legs, int), 'The legs should be an int'
+
+def check_animal_tail(tail):
+	assert isinstance(tail, int), 'The tails should be an int'
+
+# Returns a bred animal from two random parents.
 def breedAnimal(data):
 
 	i = random.sample(range(0,19), 2)
@@ -34,32 +51,40 @@ def breedAnimal(data):
 	bredAnimal.append(legAvg)
 
 	# Breeds the animal to have the average number of tails between the parents.
-	tailAvg = int((data['tail'][i[0]] + data['legs'][i[1]]) / 2)
+	tailAvg = int((data['tail'][i[0]] + data['tail'][i[1]]) / 2)
 	bredAnimal.append(tailAvg) 
 
-	print(bredAnimal)
+	return bredAnimal
 
+# Returns a random animal from the list.
 def randAnimal(data):
 
-	i = random.randint(0.,19)
+	i = random.randint(0,19)
 	
 	randomAnimal = []
-	
 	randomAnimal.append(data['head'][i])
 	randomAnimal.append(data['body'][i])
 	randomAnimal.append(data['arms'][i])
 	randomAnimal.append(data['legs'][i])
 	randomAnimal.append(data['tail'][i])
-	
-	print(randomAnimal)
+
+	return randomAnimal
 
 def main():
 	
 	with open('animals.json', 'r') as f:
 		data = json.load(f)
-	
-	breedAnimal(data)
-	randAnimal(data)
+
+	# Increments over animals and checks that they are each of the right type.
+	for i in range(0,20):
+		check_animal_head( data['head'][i])
+		check_animal_body( data['body'][i])
+		check_animal_arms( data['arms'][i])
+		check_animal_legs( data['legs'][i])
+		check_animal_tail( data['tail'][i])
+
+	print(breedAnimal(data))
+	print(randAnimal(data))
 
 if __name__ == '__main__':
 	main()
