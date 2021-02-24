@@ -1,6 +1,8 @@
+#!/usr/bin/env python3
 import json
 import random
 import string
+import sys
 
 # Unit tests for animal body parts.
 def check_animal_head(head):
@@ -19,72 +21,36 @@ def check_animal_tail(tail):
 	assert isinstance(tail, int), 'The tails should be an int'
 
 # Returns a bred animal from two random parents.
-def breedAnimal(data):
+def breed_animal(animal_dict):
 
 	i = random.sample(range(0,19), 2)
 	
-	bredAnimal = []
+	bred_animal = {}
 
-	# Breeds the animal to have a mixed head type.
-	bredAnimal.append(data['head'][i[0]])
-	bredAnimal[0] += '-' + data['head'][i[1]]
+	bred_animal['head'] = str(animal_dict['animals'][i[0]]['head']) + str(animal_dict['animals'][i[1]]['head'])
 
-	# Breeds the animal to have a mixed body type.
-	# Since body already contains multiple body types, the string is partitioned to have only one per parent.
-	bodyPartition1 = data['body'][i[0]].partition('-')
-	bodyPartition2 = data['body'][i[1]].partition('-')
-
-	# Selects a random index of the body partition to add that is not '-'
+	# Partitions out the bodies of the parents so that there are only at max 2 body types.
+	bodyPartition1 = animal_dict['animals'][i[0]]['body'].partition('-')
+	bodyPartition2 = animal_dict['animals'][i[0]]['body'].partition('-')
 	j = random.randint(0,1) * 2
-	bredAnimal.append(bodyPartition1[j])
-	
+	bred_animal['body'] = bodyPartition1[j]
 	k = random.randint(0,1) * 2
 	if (bodyPartition1[j] != bodyPartition2[k]):
-		bredAnimal[1] += '-' + bodyPartition2[k]
+		bred_animal['body'] += '-' + bodyPartition2[k]
 
-	# Breeds the animal to have the average number of arms between the parents.
-	armAvg = int((data['arms'][i[0]] + data['arms'][i[1]]) / 2)
-	bredAnimal.append(armAvg)
-	
-	# Breeds teh animal to have the average number of legs between the parents.
-	legAvg = int((data['legs'][i[0]] + data['legs'][i[1]]) / 2)
-	bredAnimal.append(legAvg)
+	bred_animal['arms'] = int((animal_dict['animals'][i[0]]['arms'] + animal_dict['animals'][i[1]]['arms']) / 2)
+	bred_animal['legs'] = int((animal_dict['animals'][i[0]]['legs'] + animal_dict['animals'][i[1]]['legs']) / 2)
+	bred_animal['tail'] = int((animal_dict['animals'][i[0]]['tail'] + animal_dict['animals'][i[1]]['tail']) / 2)
 
-	# Breeds the animal to have the average number of tails between the parents.
-	tailAvg = int((data['tail'][i[0]] + data['tail'][i[1]]) / 2)
-	bredAnimal.append(tailAvg) 
-
-	return bredAnimal
-
-# Returns a random animal from the list.
-def randAnimal(data):
-
-	i = random.randint(0,19)
-	
-	randomAnimal = []
-	randomAnimal.append(data['head'][i])
-	randomAnimal.append(data['body'][i])
-	randomAnimal.append(data['arms'][i])
-	randomAnimal.append(data['legs'][i])
-	randomAnimal.append(data['tail'][i])
-
-	return randomAnimal
+	return bred_animal
 
 def main():
-	
-	with open('animals.json', 'r') as f:
-		data = json.load(f)
 
-	# Increments over animals and checks that they are each of the right type.
-	for i in range(0,20):
-		check_animal_head( data['head'][i])
-		check_animal_body( data['body'][i])
-		check_animal_arms( data['arms'][i])
-		check_animal_legs( data['legs'][i])
-		check_animal_tail( data['tail'][i])
+    with open(sys.argv[1], 'r') as f:
+        animal_dict = json.load(f)
 
-	print(breedAnimal(data))
-	print(randAnimal(data))
+    print(random.choice(animal_dict['animals']))
+    print(breed_animal(animal_dict))
 
 if __name__ == '__main__':
-	main()
+    main()

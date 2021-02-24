@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+import sys
 import unittest
 from read_animals import *
 
