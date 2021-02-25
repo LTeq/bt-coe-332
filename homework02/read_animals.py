@@ -29,7 +29,7 @@ def breed_animal(animal_dict):
 
 	# Merges the animals' heads as long as they are different.
 	bred_animal['head'] = str(animal_dict['animals'][i[0]]['head'])
-	if(str(animal_dict['animals'][i[1]]['head']) != str(animal_dict['animals'][i[0]]['head']):
+	if( str(animal_dict['animals'][i[1]]['head']) != str(animal_dict['animals'][i[0]]['head'])):
 		bred_animal['head'] += '-' + str(animal_dict['animals'][i[1]]['head'])
 
 	# Partitions out the bodies of the parents so that there are only at max 2 body types.
