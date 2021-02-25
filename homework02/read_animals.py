@@ -45,12 +45,16 @@ def breed_animal(animal_dict):
 	return bred_animal
 
 def main():
-
-    with open(sys.argv[1], 'r') as f:
-        animal_dict = json.load(f)
-
-    print(random.choice(animal_dict['animals']))
-    print(breed_animal(animal_dict))
+	with open(sys.argv[1], 'r') as f:
+		animal_dict = json.load(f)
+	print(random.choice(animal_dict['animals']))
+	print(breed_animal(animal_dict))
+	for x in range(0, 20):
+		check_animal_head( animal_dict['animals'][x]['head'])
+		check_animal_body( animal_dict['animals'][x]['body'])
+		check_animal_arms( animal_dict['animals'][x]['arms'])
+		check_animal_legs( animal_dict['animals'][x]['legs'])
+		check_animal_tail( animal_dict['animals'][x]['tail'])
 
 if __name__ == '__main__':
     main()
