@@ -17,7 +17,7 @@ test_read_animals.py    Runs unit tests on read_animals.py.
 
 Installation commands are in Dockerfile. A docker image can be built using Dockerfile through: 
 
-docker build -t <username>/<filename>:<version> .
+docker build -t username/filename:version .
   
 To run the scripts inside a container: 
 
