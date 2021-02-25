@@ -27,6 +27,7 @@ def breed_animal(animal_dict):
 	
 	bred_animal = {}
 
+	# Merges the animals heads.
 	bred_animal['head'] = str(animal_dict['animals'][i[0]]['head']) + str(animal_dict['animals'][i[1]]['head'])
 
 	# Partitions out the bodies of the parents so that there are only at max 2 body types.
@@ -38,6 +39,7 @@ def breed_animal(animal_dict):
 	if (bodyPartition1[j] != bodyPartition2[k]):
 		bred_animal['body'] += '-' + bodyPartition2[k]
 
+	# Mergs the animals arm count by taking an average.
 	bred_animal['arms'] = int((animal_dict['animals'][i[0]]['arms'] + animal_dict['animals'][i[1]]['arms']) / 2)
 	bred_animal['legs'] = int((animal_dict['animals'][i[0]]['legs'] + animal_dict['animals'][i[1]]['legs']) / 2)
 	bred_animal['tail'] = int((animal_dict['animals'][i[0]]['tail'] + animal_dict['animals'][i[1]]['tail']) / 2)
@@ -47,8 +49,21 @@ def breed_animal(animal_dict):
 def main():
 	with open(sys.argv[1], 'r') as f:
 		animal_dict = json.load(f)
+	
 	print(random.choice(animal_dict['animals']))
-	print(breed_animal(animal_dict))
+	bred = breed_animal(animal_dict)
+	
+	# Checks that the bred animal has body parts that follow the right types.
+	check_animal_head( bred['head'])
+	check_animal_body( bred['head'])
+	check_animal_arms( bred['arms'])
+	check_animal_legs( bred['legs'])
+	check_animal_tail( bred['tail'])
+	
+	# Prints the bred animal.
+	print(bred)
+
+	# Checks each animal inside animal_dict to see if they follow the right types.
 	for x in range(0, 20):
 		check_animal_head( animal_dict['animals'][x]['head'])
 		check_animal_body( animal_dict['animals'][x]['body'])
@@ -57,4 +72,4 @@ def main():
 		check_animal_tail( animal_dict['animals'][x]['tail'])
 
 if __name__ == '__main__':
-    main()
+	main()
