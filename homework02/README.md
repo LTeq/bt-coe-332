@@ -27,6 +27,7 @@ docker run --rm -v $PWD:/data <username>/<filename>:<version> read_animals.py /d
 
 docker run --rm -v $PWD:/data <username>/<filename>:<version> test_read_animals.py
 
+
 Dockerfile Commands
 
 FROM centos:7.7.1908
