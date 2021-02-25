@@ -12,7 +12,7 @@ selected from a petname library. Files include:
 
 Installation commands are in Dockerfile. A docker image can be built using Dockerfile through: 
 
-docker build -t username/filename:version .
+* docker build -t username/filename:version .
 
 To run the scripts inside a container:
 
