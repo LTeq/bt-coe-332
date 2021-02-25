@@ -27,8 +27,10 @@ def breed_animal(animal_dict):
 	
 	bred_animal = {}
 
-	# Merges the animals heads.
-	bred_animal['head'] = str(animal_dict['animals'][i[0]]['head']) + str(animal_dict['animals'][i[1]]['head'])
+	# Merges the animals' heads as long as they are different.
+	bred_animal['head'] = str(animal_dict['animals'][i[0]]['head'])
+	if(str(animal_dict['animals'][i[1]]['head']) != str(animal_dict['animals'][i[0]]['head']):
+		bred_animal['head'] += '-' + str(animal_dict['animals'][i[1]]['head'])
 
 	# Partitions out the bodies of the parents so that there are only at max 2 body types.
 	bodyPartition1 = animal_dict['animals'][i[0]]['body'].partition('-')
@@ -39,7 +41,7 @@ def breed_animal(animal_dict):
 	if (bodyPartition1[j] != bodyPartition2[k]):
 		bred_animal['body'] += '-' + bodyPartition2[k]
 
-	# Mergs the animals arm count by taking an average.
+	# Merges the animals' arm count by taking an average.
 	bred_animal['arms'] = int((animal_dict['animals'][i[0]]['arms'] + animal_dict['animals'][i[1]]['arms']) / 2)
 	bred_animal['legs'] = int((animal_dict['animals'][i[0]]['legs'] + animal_dict['animals'][i[1]]['legs']) / 2)
 	bred_animal['tail'] = int((animal_dict['animals'][i[0]]['tail'] + animal_dict['animals'][i[1]]['tail']) / 2)
