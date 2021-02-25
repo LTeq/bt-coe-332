@@ -3,10 +3,14 @@
 The Containers and Repositories of Dr. Moreau creates a random dictionary of animals with body parts
 selected from a petname library. Files include:
   
-* Dockerfile              * Contains commands for installing the necessary dependencies for the program.
-* generate_animals.py     * Writes a random dictionary of animals to a *.json file drawn from the petname library.
-* read_animals.py         * Reads a *.json file.
-* test_read_animals.py    * Runs unit tests on read_animals.py.
+* Dockerfile              
+* * Contains commands for installing the necessary dependencies for the program.
+* generate_animals.py     
+* * Writes a random dictionary of animals to a *.json file drawn from the petname library.
+* read_animals.py         
+* * Reads a *.json file.
+* test_read_animals.py    
+* * Runs unit tests on read_animals.py.
 
 ## Installation
 
