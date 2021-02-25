@@ -49,7 +49,7 @@ def breed_animal(animal_dict):
 def main():
 	with open(sys.argv[1], 'r') as f:
 		animal_dict = json.load(f)
-	
+	print('Random animal: ')
 	print(random.choice(animal_dict['animals']))
 	bred = breed_animal(animal_dict)
 	
@@ -61,6 +61,7 @@ def main():
 	check_animal_tail( bred['tail'])
 	
 	# Prints the bred animal.
+	print('\nBred animal: ')
 	print(bred)
 
 	# Checks each animal inside animal_dict to see if they follow the right types.
