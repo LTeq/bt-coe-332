@@ -7,6 +7,7 @@ selected from a petname library. Files include:
   * Contains commands for installing the necessary dependencies for the program.
 * generate_animals.py     
   * Writes a random dictionary of animals to a *.json file drawn from the petname library.
+  * breed_animal(animal_dict) is a function that breeds two animals chosen from animal_dict together.
 * read_animals.py         
   * Reads a *.json file.
 * test_read_animals.py    
