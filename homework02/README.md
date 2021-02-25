@@ -1,9 +1,7 @@
 # bt-coe-332/homework02
 
 The Containers and Repositories of Dr. Moreau creates a random dictionary of animals with body parts
-selected from a petname library.
-
-Files include:
+selected from a petname library. Files include:
   
 Dockerfile              Contains commands for installing the necessary dependencies for the program.
 
