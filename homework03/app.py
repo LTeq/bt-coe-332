@@ -1,6 +1,5 @@
 import json
 from flask import Flask, requests
-import sys
 
 app = Flask(__name__)
 
@@ -9,6 +8,7 @@ def print_Animals():
 	return json.dumps(get_data())
 
 # Returns animals with a head type as specified by the URL
+# Can also be done using output = [x for x in test if x['head'] == 'snake']
 @app.route('/animals/head/<head_type>', methods=['Get'])
 def print_Head_Type():
 	animal_dict = get_data()
@@ -19,6 +19,7 @@ def print_Head_Type():
 	return new_animal_dict
 
 # Returns animals with a leg count as specified by the URL
+# Can also be done using: output = [x for x in test if x['head'] == 'snake']
 @app.route('/animals/head/<leg_count>', methods=['Get'])
 def print_Leg_Count():
         animal_dict = get_data()
@@ -29,8 +30,8 @@ def print_Leg_Count():
         return new_animal_dict
 
 def get_data():
-	with open(sys.argv[1], 'r') as f:
-		animal_dict = json.load(f)
+	with open("/app/animals.json", 'r') as json_file:
+		animal_dict = json.load(json_file)
 	return animal_dict
 
 if __name__ == '__main__':
