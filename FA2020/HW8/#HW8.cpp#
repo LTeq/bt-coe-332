@@ -1,0 +1,75 @@
+#include <memory>
+#include <iostream>
+using std::cout;
+using std::endl;
+using std::shared_ptr;
+using std::make_shared;
+
+class Node {
+private:
+  int datavalue{0};
+  shared_ptr<Node> tail_ptr{nullptr};
+public:
+  Node() {} Node(int value)
+    : datavalue(value) {};
+
+  int value() { return datavalue; };
+
+  bool has_next() {
+    if ( tail_ptr == nullptr )
+      return false;
+    else return true;
+  };
+
+  int list_length() {
+    if (!has_next()) return 1;
+    else
+      return 1+tail_ptr->list_length();
+  };
+
+  void set_tail( shared_ptr<Node> tail ) {
+    tail_ptr = tail;
+  };
+
+  void append( shared_ptr<Node> tail) {
+    if ( !has_next() ) {
+      set_tail(tail);
+    }
+    else { 
+      tail_ptr->append(tail);
+    }
+  };
+
+  void insert( shared_ptr<Node> tail) {
+    cout<<"Execute-1";
+    if ( datavalue < tail->value()) {
+      tail_ptr->insert(tail);
+      cout<<"Execute0";
+    }
+    else {
+      if(tail_ptr->has_next()) {
+	tail_ptr->insert(tail_ptr);
+	cout<<"Execute1";
+      }
+      cout<<"Execute2";
+      set_tail(tail);
+    }
+  };
+
+  void print() {
+    cout << datavalue;
+    if (!has_next())
+      cout << endl;
+    else {
+      cout << ",";
+      tail_ptr->print();
+    }
+  };
+};
+
+);
+  first->print();
+  cout << "List length: "
+       << first->list_length() << endl;
+  return 0;
+}
