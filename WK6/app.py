@@ -1,5 +1,5 @@
 import json
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
@@ -10,6 +10,14 @@ def hello_world():
 @app.route('/helloworld/<name>', methods=['Get'])
 def hello_name(name):
 	return "Hello {}\n".format(name)
+
+@app.route('/hello', methods=['GET'])
+def hello_name1():
+	print (request.args)
+	for i in request.args.keys():
+		print(i)
+	name = request.args.get('name')
+	return "(round2) Hello {}\n".format(name)
 
 @app.route('/degrees', methods=['GET'])
 def get_degrees():
